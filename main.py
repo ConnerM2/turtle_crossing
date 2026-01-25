@@ -1,6 +1,7 @@
-from turtle import Turtle, Screen
+from turtle import Screen
 from player import Player
 from car import Car
+from scoreboard import ScoreBoard
 import time
 
 
@@ -8,18 +9,31 @@ screen = Screen()
 screen.setup(600, 600)
 screen.tracer(0)
 player = Player()
-car1 = Car()
+car = Car()
+scoreboard = ScoreBoard()
+last_time = time.time()
 
-def gen_car():
-    new_car = Car()
-    return new_car
+screen.listen()
+screen.onkeypress(player.move_up, "Up")
+screen.onkeypress(player.move_down, "Down")
 
 
 gameOn = True
 
 while gameOn:
-    screen.update()
     time.sleep(0.1)
-    car1.move()
+    screen.update()
+
+    if player.ycor() > 280:
+        scoreboard.update(player)
+        car.increase_speed()
+        print(car.speed)
+
+    car.create_cars()
+    car.move()
+
+    for vehicle in car.all_cars:
+        if player.distance(vehicle) < 20:
+            gameOn = False
 
 screen.exitonclick()
