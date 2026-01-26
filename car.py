@@ -1,5 +1,6 @@
 from turtle import Turtle
 import random
+colors = ['red', 'blue', 'orange', 'purple', 'green', 'pink']
 
 class Car(Turtle):
     def __init__(self):
@@ -12,6 +13,7 @@ class Car(Turtle):
         if random_chance == 1:
             new_car = Turtle("square")
             new_car.shapesize(1, 2)
+            new_car.color(random.choice(colors))
             new_car.penup()
             new_car.setheading(180)
             ran_y = random.randint(-250, 250)
