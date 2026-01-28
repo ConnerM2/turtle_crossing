@@ -16,7 +16,7 @@ last_time = time.time()
 screen.listen()
 screen.onkeypress(player.move_up, "Up")
 screen.onkeypress(player.move_down, "Down")
-
+print('test')
 
 gameOn = True
 
